@@ -35,6 +35,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/AL2.0'
+        exclude 'win32-x86-64/attach_hotspot_windows.dll'
+        exclude 'win32-x86/attach_hotspot_windows.dll'
+        exclude 'META-INF/licenses/ASM'
+    }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -78,10 +90,12 @@ dependencies {
     androidTestImplementation "androidx.arch.core:core-testing:$archTestingVersion"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
     androidTestImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
-    //androidTestImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
-    //androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.0"
+    androidTestImplementation "androidx.fragment:fragment-testing:$fragmentVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:3.1.0"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
+
 }
